@@ -1,4 +1,4 @@
-package io.craigmiller160.orgbuilder.api.model;
+package io.craigmiller160.orgbuilder.api.v1.model;
 
 /**
  * Enumeration of US States.
