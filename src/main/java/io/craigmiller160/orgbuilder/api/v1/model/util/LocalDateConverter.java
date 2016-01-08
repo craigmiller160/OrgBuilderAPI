@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 /**
  * Date conversion utility, used to convert
- * java.time.LocalDate to java.sql.Date by
- * persistence frameworks.
+ * java.time.LocalDate to java.sql.Date
+ * and vice-versa by persistence frameworks.
  *
  * Created by Craig on 1/7/2016.
  */
