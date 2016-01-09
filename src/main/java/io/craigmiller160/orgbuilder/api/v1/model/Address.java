@@ -1,5 +1,7 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
+
 import java.time.LocalDateTime;
 
 /**
@@ -13,64 +15,44 @@ public class Address {
 
     //TODO create subclass for PersonAddress, with a person field that owns it.
 
-    /**
-     * The address ID, the primary key of the
-     * database table.
+     /**
+     * Unique identifier and database primary key
+     * for this Address.
      *
      * This field should NOT be assigned manually,
-     * it should be given a value consistent with
-     * the keys in the database table.
+     * it should only be given a value consistent
+     * with the keys in the database.
      */
     private Long addressId;
 
     /**
      * A timestamp for when the address was last
      * modified.
+     *
+     * This field should be assigned right before
+     * each persistence operation.
      */
     private LocalDateTime lastModified;
 
-    /**
-     * The type of address this is.
+    /*
+     * The fields for the values of the
+     * address.
      */
     private AddressType addressType;
-
-    /**
-     * The house number and street name.
-     */
     private String streetAddress;
-
-    /**
-     * The PO Box.
-     */
     private String poBox;
-
-    /**
-     * The unit/apartment number.
-     */
     private String unit;
-
-    /**
-     * The city name.
-     */
     private String city;
-
-    /**
-     * The state.
-     */
     private State state;
-
-    /**
-     * The zip code.
-     */
     private String zip;
 
     /**
-     * Build an <tt>Address</tt> object.
+     * Build an Address object.
      */
     public Address(){}
 
     /**
-     * Build an <tt>Address</tt> object that
+     * Build an Address object that
      * is a standard house address.
      *
      * @param addressType the type of address this is.
@@ -84,7 +66,7 @@ public class Address {
     }
 
     /**
-     * Build an <tt>Address</tt> object that
+     * Build an Address object that
      * is a standard apartment address.
      *
      * @param addressType the type of address this is.
@@ -263,6 +245,73 @@ public class Address {
      */
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        if (addressType != address.addressType) return false;
+        if (streetAddress != null ? !streetAddress.equals(address.streetAddress) : address.streetAddress != null)
+            return false;
+        if (poBox != null ? !poBox.equals(address.poBox) : address.poBox != null) return false;
+        if (unit != null ? !unit.equals(address.unit) : address.unit != null) return false;
+        if (city != null ? !city.equals(address.city) : address.city != null) return false;
+        //noinspection SimplifiableIfStatement
+        if (state != address.state) return false;
+        return !(zip != null ? !zip.equals(address.zip) : address.zip != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = addressType != null ? addressType.hashCode() : 0;
+        result = 31 * result + (streetAddress != null ? streetAddress.hashCode() : 0);
+        result = 31 * result + (poBox != null ? poBox.hashCode() : 0);
+        result = 31 * result + (unit != null ? unit.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + (zip != null ? zip.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+
+        if(StringUtil.ensureStringExists(poBox)){
+            builder.append(poBox);
+        }
+
+        if(StringUtil.ensureStringExists(streetAddress)){
+            StringUtil.ensureEndsWithSpace(builder);
+            builder.append(streetAddress);
+        }
+
+        if(StringUtil.ensureStringExists(unit)){
+            StringUtil.ensureEndsWithSpace(builder);
+            builder.append(unit);
+        }
+
+        if(StringUtil.ensureStringExists(city)){
+            StringUtil.ensureEndsWithCommaSpace(builder);
+            builder.append(city);
+        }
+
+        if(state != null){
+            StringUtil.ensureEndsWithCommaSpace(builder);
+            builder.append(state.toString());
+        }
+
+        if(StringUtil.ensureStringExists(zip)){
+            StringUtil.ensureEndsWithSpace(builder);
+            builder.append(zip);
+        }
+
+        return builder.toString();
     }
 
     /**
