@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Model class that defines a person.
@@ -51,6 +53,15 @@ implements Serializable{
     private String suffix;
     private LocalDate birthDate;
     private Gender gender;
+
+    /*
+     * Collection fields for the relationship
+     * between this person and other entities
+     * it "owns".
+     */
+    private Set<PersonAddress> addresses = new HashSet<>();
+    private Set<PersonPhone> phones = new HashSet<>();
+    private Set<PersonEmail> emails = new HashSet<>();
 
     /**
      * Create a new person.
@@ -284,6 +295,198 @@ implements Serializable{
      */
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    /**
+     * Get all the addresses owned by this person.
+     *
+     * @return all the addresses owned by this person.
+     */
+    public Set<PersonAddress> getAddresses() {
+        return addresses;
+    }
+
+    /**
+     * Set all the addresses owned by this person.
+     *
+     * @param addresses all the addresses owned by this person.
+     */
+    public void setAddresses(Set<PersonAddress> addresses) {
+        this.addresses = addresses != null ? addresses : new HashSet<>();
+    }
+
+    /**
+     * Get all the phones owned by this person.
+     *
+     * @return all the phones owned by this person.
+     */
+    public Set<PersonPhone> getPhones() {
+        return phones;
+    }
+
+    /**
+     * Set all the phones owned by this person.
+     *
+     * @param phones all the phones owned by this person.
+     */
+    public void setPhones(Set<PersonPhone> phones) {
+        this.phones = phones != null ? phones : new HashSet<>();
+    }
+
+    /**
+     * Get all the emails owned by this person.
+     *
+     * @return all the emails owned by this person.
+     */
+    public Set<PersonEmail> getEmails() {
+        return emails;
+    }
+
+    /**
+     * Set all the emails owned by this person.
+     *
+     * @param emails all the emails owned by this person.
+     */
+    public void setEmails(Set<PersonEmail> emails) {
+        this.emails = emails != null ? emails : new HashSet<>();
+    }
+
+    /**
+     * Add an address. This method should be used
+     * over retrieving the Set and adding directly,
+     * because this method sets this object
+     * as the address's owner.
+     *
+     * @param address the address to add.
+     * @return true if the address was successfully added.
+     */
+    public boolean addAddress(PersonAddress address){
+        if(address != null){
+            address.setOwner(this);
+            return addresses.add(address);
+        }
+        return false;
+    }
+
+    /**
+     * Add a phone. This method should be used
+     * over retrieving the Set and adding directly,
+     * because this method sets this object
+     * as the phone's owner.
+     *
+     * @param phone the phone to add.
+     * @return true if the phone was successfully added.
+     */
+    public boolean addPhone(PersonPhone phone){
+        if(phone != null){
+            phone.setOwner(this);
+            return phones.add(phone);
+        }
+        return false;
+    }
+
+    /**
+     * Add an email. This method should be used
+     * over retrieving the Set and adding directly,
+     * because this method sets this object
+     * as the email's owner.
+     *
+     * @param email the email to add.
+     * @return true if the address was successfully added.
+     */
+    public boolean addEmail(PersonEmail email){
+        if(email != null){
+            email.setOwner(this);
+            return emails.add(email);
+        }
+        return false;
+    }
+
+    /**
+     * Remove an address. This method should be used
+     * over retrieving the Set and removing directly,
+     * because this method removes this object
+     * as the address's owner.
+     *
+     * @param address the address to remove.
+     * @return true if the address was successfully removed.
+     */
+    public boolean removeAddress(PersonAddress address){
+        if(address != null){
+            address.setOwner(null);
+            return addresses.remove(address);
+        }
+        return false;
+    }
+
+    /**
+     * Remove a phone. This method should be used
+     * over retrieving the Set and removing directly,
+     * because this method removes this object
+     * as the phone's owner.
+     *
+     * @param phone the phone to remove.
+     * @return true if the phone was successfully removed.
+     */
+    public boolean removePhone(PersonPhone phone){
+        if(phone != null){
+            phone.setOwner(null);
+            return phones.remove(phone);
+        }
+        return false;
+    }
+
+    /**
+     * Remove an email. This method should be used
+     * over retrieving the Set and removing directly,
+     * because this method removes this object
+     * as the email's owner.
+     *
+     * @param email the email to remove.
+     * @return true if the email was successfully removed.
+     */
+    public boolean removeEmail(PersonEmail email){
+        if(email != null){
+            email.setOwner(null);
+            return emails.remove(email);
+        }
+        return false;
+    }
+
+    /**
+     * Convenience method to get a count
+     * of the number of addresses owned by
+     * this person.
+     *
+     * @return the number of addresses owned
+     * by this person.
+     */
+    public int getAddressCount(){
+        return addresses.size();
+    }
+
+    /**
+     * Convenience method to get a count
+     * of the number of phones owned by
+     * this person.
+     *
+     * @return the number of phones owned
+     * by this person.
+     */
+    public int getPhoneCount(){
+        return phones.size();
+    }
+
+    /**
+     * Convenience method to get a count
+     * of the number of emails owned by
+     * this person.
+     *
+     * @return the number of emails owned
+     * by this person.
+     */
+    public int getEmailCount(){
+        return emails.size();
     }
 
     @Override
