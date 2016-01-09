@@ -324,12 +324,12 @@ implements Serializable{
         }
 
         if(StringUtil.ensureStringExists(middleName)){
-            StringUtil.ensureEndsWithSpace(builder);
+            builder = StringUtil.ensureEndsWithSpace(builder);
             builder.append(middleName);
         }
 
         if(StringUtil.ensureStringExists(lastName)){
-            StringUtil.ensureEndsWithSpace(builder);
+            builder = StringUtil.ensureEndsWithSpace(builder);
             builder.append(lastName);
         }
 

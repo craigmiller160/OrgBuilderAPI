@@ -291,27 +291,27 @@ implements Serializable {
         }
 
         if(StringUtil.ensureStringExists(streetAddress)){
-            StringUtil.ensureEndsWithSpace(builder);
+            builder = StringUtil.ensureEndsWithSpace(builder);
             builder.append(streetAddress);
         }
 
         if(StringUtil.ensureStringExists(unit)){
-            StringUtil.ensureEndsWithSpace(builder);
+            builder = StringUtil.ensureEndsWithSpace(builder);
             builder.append(unit);
         }
 
         if(StringUtil.ensureStringExists(city)){
-            StringUtil.ensureEndsWithCommaSpace(builder);
+            builder = StringUtil.ensureEndsWithCommaSpace(builder);
             builder.append(city);
         }
 
         if(state != null){
-            StringUtil.ensureEndsWithCommaSpace(builder);
+            builder = StringUtil.ensureEndsWithCommaSpace(builder);
             builder.append(state.toString());
         }
 
         if(StringUtil.ensureStringExists(zip)){
-            StringUtil.ensureEndsWithSpace(builder);
+            builder = StringUtil.ensureEndsWithSpace(builder);
             builder.append(zip);
         }
 
