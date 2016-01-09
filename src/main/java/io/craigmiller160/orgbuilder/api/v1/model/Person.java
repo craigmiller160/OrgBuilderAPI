@@ -2,6 +2,7 @@ package io.craigmiller160.orgbuilder.api.v1.model;
 
 import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -13,7 +14,10 @@ import java.time.Period;
  *
  * Created by Craig on 1/7/2016.
  */
-public class Person {
+public class Person
+implements Serializable{
+
+    private static final long serialVersionUID = -6422079281242135983L;
 
     //TODO need to add fields for addresses, phones, and emails
 

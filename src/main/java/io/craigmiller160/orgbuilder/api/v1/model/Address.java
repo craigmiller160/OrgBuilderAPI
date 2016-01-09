@@ -2,6 +2,7 @@ package io.craigmiller160.orgbuilder.api.v1.model;
 
 import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +12,10 @@ import java.time.LocalDateTime;
  *
  * Created by Craig on 1/7/2016.
  */
-public class Address {
+public class Address
+implements Serializable {
+
+    private static final long serialVersionUID = 572498598156134080L;
 
     //TODO create subclass for PersonAddress, with a person field that owns it.
 
