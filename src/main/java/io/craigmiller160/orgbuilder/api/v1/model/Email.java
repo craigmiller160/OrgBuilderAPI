@@ -41,41 +41,94 @@ implements Serializable{
     private EmailType emailType;
     private String emailAddress;
 
+    /**
+     * Create a new Email.
+     */
     public Email(){}
 
+    /**
+     * Create a new Email with its fields defined.
+     *
+     * @param emailType the type of email address.
+     * @param emailAddress the email address.
+     */
     public Email(EmailType emailType, String emailAddress){
         this.emailType = emailType;
         this.emailAddress = emailAddress;
     }
 
+    /**
+     * Get the unique identifier for this
+     * email address.
+     *
+     * @return the unique ID for this email.
+     */
     public Long getEmailId() {
         return emailId;
     }
 
+    /**
+     * Set the unique identifier for this
+     * email address.
+     *
+     * @param emailId the unique ID for this email.
+     */
     public void setEmailId(Long emailId) {
         this.emailId = emailId;
     }
 
+    /**
+     * Get the timestamp of when this email
+     * was last modified.
+     *
+     * @return the last modified timestamp.
+     */
     public LocalDateTime getLastModified() {
         return lastModified;
     }
 
+    /**
+     * Set the timestamp of when this email
+     * was last modified.
+     *
+     * @param lastModified the last modified timestamp.
+     */
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
     }
 
+    /**
+     * Get the type of email address.
+     *
+     * @return the type of email address.
+     */
     public EmailType getEmailType() {
         return emailType;
     }
 
+    /**
+     * Set the type of email address.
+     *
+     * @param emailType the type of email address.
+     */
     public void setEmailType(EmailType emailType) {
         this.emailType = emailType;
     }
 
+    /**
+     * Get the email address.
+     *
+     * @return the email address.
+     */
     public String getEmailAddress() {
         return emailAddress;
     }
 
+    /**
+     * Set the email address.
+     *
+     * @param emailAddress the email address.
+     */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
