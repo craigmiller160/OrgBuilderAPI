@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * JUnit test case for methods that
