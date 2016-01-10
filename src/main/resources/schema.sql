@@ -1,11 +1,36 @@
 # noinspection SqlNoDataSourceInspectionForFile
 /* DDL for creating the database for this application */
+/* If developing this application on a new machine, execute all
+    of this SQL to ensure that your schema is correct*/
 
 /* Create database */
 drop database if exists orgbuilder;
 create database orgbuilder;
 
-/* People table */
+/* Create procedure to drop 'orgbuilder' user if it exists */
+drop procedure if exists orgbuilder.drop_user
+delimiter ;;
+create procedure orgbuilder.drop_user()
+	begin
+		declare user_count int;
+
+        select count(*) into user_count
+        from mysql.user
+        where mysql.user.user='orgbuilder';
+
+        if user_count = 1
+        then drop user 'orgbuilder'@'localhost';
+        end if;
+    end;;
+delimiter ;
+
+/* Execute the drop_user procedure and then create the 'orgbuilder' user.
+    This ensures that the user account is configured properly for what the
+    application expects */
+call orgbuilder.drop_user;
+create user 'orgbuilder'@'localhost' identified by 'orgbuilder';
+
+/* Create People table */
 drop table if exists orgbuilder.people;
 create table orgbuilder.people(
   person_id bigint not null auto_increment,
@@ -20,7 +45,7 @@ create table orgbuilder.people(
   primary key(person_id)
 );
 
-/* People_Addresses table */
+/* Create People_Addresses table */
 drop table if exists orgbuilder.people_addresses;
 create table orgbuilder.people_addresses(
   address_id bigint not null auto_increment,
@@ -37,7 +62,7 @@ create table orgbuilder.people_addresses(
   foreign key(person_id) references orgbuilder.people(person_id)
 );
 
-/* People_Emails table */
+/* Create People_Emails table */
 drop table if exists orgbuilder.people_emails;
 create table orgbuilder.people_emails(
   email_id bigint not null auto_increment,
@@ -49,7 +74,7 @@ create table orgbuilder.people_emails(
   foreign key(person_id) references orgbuilder.people(person_id)
 );
 
-/* People_Phones table */
+/* Create People_Phones table */
 drop table if exists orgbuilder.people_phones;
 create table orgbuilder.people_phones(
   phone_id bigint not null auto_increment,
