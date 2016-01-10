@@ -1,7 +1,16 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import io.craigmiller160.orgbuilder.api.v1.model.util.LocalDateTimeConverter;
 import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,6 +20,7 @@ import java.time.LocalDateTime;
  *
  * Created by Craig on 1/8/2016.
  */
+@MappedSuperclass
 public class Phone
 implements Serializable{
 
@@ -24,6 +34,9 @@ implements Serializable{
      * it should only be given a value consistent
      * with the keys in the database.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "phone_id")
     private Long phoneId;
 
     /**
@@ -33,6 +46,8 @@ implements Serializable{
      * This field should be assigned right before
      * each persistence operation.
      */
+    @Column(name = "last_modified")
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime lastModified;
 
     /*
@@ -43,9 +58,13 @@ implements Serializable{
      * because as numbers they might drop
      * digits.
      */
+    @Column(name = "phone_type")
+    @Enumerated(EnumType.STRING)
     private PhoneType phoneType;
+    @Column(name = "area_code")
     private String areaCode;
     private String prefix;
+    @Column(name = "line_number")
     private String lineNumber;
     private String extension;
 

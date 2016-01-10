@@ -1,7 +1,16 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import io.craigmiller160.orgbuilder.api.v1.model.util.LocalDateTimeConverter;
 import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,6 +19,7 @@ import java.time.LocalDateTime;
  *
  * Created by Craig on 1/8/2016.
  */
+@MappedSuperclass
 public class Email
 implements Serializable{
 
@@ -23,6 +33,9 @@ implements Serializable{
      * it should only be given a value consistent
      * with the keys in the database.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "email_id")
     private Long emailId;
 
     /**
@@ -32,13 +45,18 @@ implements Serializable{
      * This field should be assigned right before
      * each persistence operation.
      */
+    @Column(name = "last_modified")
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime lastModified;
 
     /*
      * The fields for the values of the
      * email address.
      */
+    @Column(name = "email_type")
+    @Enumerated(EnumType.STRING)
     private EmailType emailType;
+    @Column(name = "email_address")
     private String emailAddress;
 
     /**

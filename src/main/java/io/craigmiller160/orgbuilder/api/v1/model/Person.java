@@ -1,7 +1,21 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import io.craigmiller160.orgbuilder.api.v1.model.util.LocalDateConverter;
+import io.craigmiller160.orgbuilder.api.v1.model.util.LocalDateTimeConverter;
 import io.craigmiller160.orgbuilder.api.v1.util.StringUtil;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +30,8 @@ import java.util.Set;
  *
  * Created by Craig on 1/7/2016.
  */
+@Entity
+@Table(name = "people")
 public class Person
 implements Serializable{
 
@@ -29,6 +45,9 @@ implements Serializable{
      * it should only be given a value consistent
      * with the keys in the database.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
     private Long personId;
 
     /**
@@ -38,6 +57,8 @@ implements Serializable{
      * This field should be assigned right before
      * each persistence operation.
      */
+    @Column(name = "last_modified")
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime lastModified;
 
     /*
@@ -45,11 +66,17 @@ implements Serializable{
      * person.
      */
     private String prefix;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "middle_name")
     private String middleName;
+    @Column(name = "last_name")
     private String lastName;
     private String suffix;
+    @Column(name = "birth_date")
+    @Convert(converter = LocalDateConverter.class)
     private LocalDate birthDate;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     /*
@@ -57,8 +84,17 @@ implements Serializable{
      * between this person and other entities
      * it "owns".
      */
+    @OneToMany (fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "owner")
     private Set<PersonAddress> addresses = new HashSet<>();
+    @OneToMany (fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "owner")
     private Set<PersonPhone> phones = new HashSet<>();
+    @OneToMany (fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "owner")
     private Set<PersonEmail> emails = new HashSet<>();
 
     /**

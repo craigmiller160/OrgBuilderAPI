@@ -1,5 +1,10 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * An address that is owned by a person. This
  * subclass contains a reference to the
@@ -9,6 +14,8 @@ package io.craigmiller160.orgbuilder.api.v1.model;
  *
  * Created by Craig on 1/9/2016.
  */
+@Entity
+@Table (name="people_addresses")
 public class PersonAddress extends Address {
 
     private static final long serialVersionUID = -5825958191570732082L;
@@ -16,6 +23,8 @@ public class PersonAddress extends Address {
     /**
      * The owner of this address.
      */
+    @ManyToOne
+    @JoinColumn (name = "person_id")
     private Person owner;
 
     /**

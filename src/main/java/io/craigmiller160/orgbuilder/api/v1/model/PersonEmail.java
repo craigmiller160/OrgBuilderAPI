@@ -1,5 +1,10 @@
 package io.craigmiller160.orgbuilder.api.v1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * An email address that is owned by a person. This
  * subclass contains a reference to the
@@ -9,6 +14,8 @@ package io.craigmiller160.orgbuilder.api.v1.model;
  *
  * Created by Craig on 1/9/2016.
  */
+@Entity
+@Table(name = "people_emails")
 public class PersonEmail extends Email{
 
     private static final long serialVersionUID = 7202296253006942018L;
@@ -16,6 +23,8 @@ public class PersonEmail extends Email{
     /**
      * The owner of this email.
      */
+    @ManyToOne
+    @JoinColumn (name = "person_id")
     private Person owner;
 
     /**
