@@ -16,8 +16,6 @@ implements Serializable{
 
     private static final long serialVersionUID = 717897495419589743L;
 
-    //TODO create subclass PersonPhone
-
     /**
      * Unique identifier and database primary key
      * for this Phone.

@@ -17,9 +17,7 @@ implements Serializable {
 
     private static final long serialVersionUID = 572498598156134080L;
 
-    //TODO create subclass for PersonAddress, with a person field that owns it.
-
-     /**
+    /**
      * Unique identifier and database primary key
      * for this Address.
      *

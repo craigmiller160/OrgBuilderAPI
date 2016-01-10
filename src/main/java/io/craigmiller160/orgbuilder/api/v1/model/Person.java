@@ -21,8 +21,6 @@ implements Serializable{
 
     private static final long serialVersionUID = -6422079281242135983L;
 
-    //TODO need to add fields for addresses, phones, and emails
-
     /**
      * Unique identifier and database primary key
      * for this Person.
