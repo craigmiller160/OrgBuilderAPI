@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public class Email
-implements Serializable{
+        implements Serializable{
 
     private static final long serialVersionUID = 522259101203914942L;
 

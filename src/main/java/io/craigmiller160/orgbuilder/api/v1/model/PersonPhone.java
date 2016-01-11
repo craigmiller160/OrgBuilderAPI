@@ -16,7 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "people_phones")
-public class PersonPhone extends Phone{
+public class PersonPhone
+        extends Phone{
 
     private static final long serialVersionUID = 5728824800208622631L;
 

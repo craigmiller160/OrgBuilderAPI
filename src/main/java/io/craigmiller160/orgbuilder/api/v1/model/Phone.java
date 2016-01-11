@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public class Phone
-implements Serializable{
+        implements Serializable{
 
     private static final long serialVersionUID = 717897495419589743L;
 

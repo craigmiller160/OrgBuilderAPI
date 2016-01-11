@@ -33,7 +33,7 @@ import java.util.Set;
 @Entity
 @Table(name = "people")
 public class Person
-implements Serializable{
+        implements Serializable{
 
     private static final long serialVersionUID = -6422079281242135983L;
 

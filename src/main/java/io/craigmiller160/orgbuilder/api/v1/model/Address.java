@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 public class Address
-implements Serializable {
+        implements Serializable {
 
     private static final long serialVersionUID = 572498598156134080L;
 
