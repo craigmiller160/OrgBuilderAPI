@@ -8,20 +8,21 @@ drop database if exists orgbuilder;
 create database orgbuilder;
 
 /* Create procedure to drop 'orgbuilder' user if it exists */
-drop procedure if exists orgbuilder.drop_user
+drop procedure if exists orgbuilder.drop_user;
 delimiter ;;
 create procedure orgbuilder.drop_user()
 	begin
 		declare user_count int;
 
-        select count(*) into user_count
-        from mysql.user
-        where mysql.user.user='orgbuilder';
+    # noinspection SqlResolve
+    select count(*)into user_count
+    from mysql.user
+    where mysql.user.user='orgbuilder';
 
-        if user_count = 1
-        then drop user 'orgbuilder'@'localhost';
-        end if;
-    end;;
+    if user_count = 1
+    then drop user 'orgbuilder'@'localhost';
+    end if;
+  end;;
 delimiter ;
 
 /* Execute the drop_user procedure and then create the 'orgbuilder' user.
