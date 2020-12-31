@@ -14,7 +14,7 @@
         <hibernate.version>4.3.11.Final</hibernate.version>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
-        <mysql.driver.version>5.1.38</mysql.driver.version>
+        <mysql.driver.version>8.0.16</mysql.driver.version>
         <servlet.version>3.1.0</servlet.version>
         <spring.version>4.2.4.RELEASE</spring.version>
     </properties>
