@@ -11,7 +11,7 @@
 
     <properties>
         <dbcp.version>2.1.1</dbcp.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
         <mysql.driver.version>5.1.38</mysql.driver.version>
