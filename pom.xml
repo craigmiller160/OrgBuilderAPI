@@ -16,7 +16,7 @@
         <junit.version>4.12</junit.version>
         <mysql.driver.version>5.1.38</mysql.driver.version>
         <servlet.version>3.1.0</servlet.version>
-        <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
     </properties>
 
     <dependencies>
